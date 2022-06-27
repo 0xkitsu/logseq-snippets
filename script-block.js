@@ -1,5 +1,4 @@
 import { html, svg } from "https://cdn.skypack.dev/htl";
-import functionPlot from "https://cdn.skypack.dev/function-plot";
 
 const elements = new Map();
 
@@ -31,7 +30,7 @@ export function defineElement(name, render) {
     this._shadow.innerHTML = "";
 
     const htmlBefore = this.outerHTML,
-          state = { html, svg, functionPlot };
+          state = { html, svg };
 
     for (const attr of this.attributes) {
       let value = attr.value;
@@ -108,8 +107,8 @@ class ScriptBlock extends HTMLElement {
     };
 
     const body = this.innerHTML.slice(4, this.innerHTML.length - 3),
-          f = Function("save", "html", "svg", "functionPlot", body),
-          content = f.call(state, saveState, html, svg, functionPlot),
+          f = Function("save", "html", "svg", body),
+          content = f.call(state, saveState, html, svg),
           shadow = this.attachShadow({mode: 'open'});
 
     if (content instanceof Node) {
@@ -133,9 +132,9 @@ class DefineScriptBlock extends HTMLElement {
 
     const name = this.getAttribute("name"),
           body = this.innerHTML.slice(4, this.innerHTML.length - 3),
-          render = new Function("save", "html", "svg", "functionPlot", body);
+          render = new Function("save", "html", "svg", body);
 
-    defineElement(name, ({ save, html, svg, functionPlot, ...state }) => render.call(state, save, html, functionPlot, svg));
+    defineElement(name, ({ save, html, svg, ...state }) => render.call(state, save, html, svg));
   }
 }
 
