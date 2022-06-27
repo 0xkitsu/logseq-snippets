@@ -1,4 +1,20 @@
 ## Loading scripts from this repository
+
+Copy custom.js to /graph/logseq/custom.js. 
+
+Adds function-plot (https://mauriciopoppe.github.io/function-plot/)
+
+Usage:
+
+Example graphing two functions:
+```html
+@@html: <plot>x^2,green,x*4,red</plot>@@
+```
+Example graphing using all options from function-plot library:
+```html
+@@html: <plot>{ yAxis: {domain: [-1, 9]}, data: [{ fn:'x^2', derivative: { fn:'2 * x', x0:2 } }]}</plot>@@
+```
+
 A few scripts are exported from this repository. To load them within a page, you can use
 
 ```js
