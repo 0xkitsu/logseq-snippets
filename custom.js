@@ -44,12 +44,26 @@ function displayPlots() {
                 vals = eval(`(${elHtml})`);
 
             }else{
-
+                
                 let funcs = elHtml.trim().split(",").reduce((r,v,i,a) => { return i % 2 == 0 ? [{fn: a[i], color: a[i+1]}, ...r] : r} , []);
                 vals = { data: funcs }
 
             }
+
+            if(plot.dataset.domain){
+                let aDomain = plot.dataset.domain.split(",");
+
+                if(aDomain.length >= 2)
+                vals.xAxis = {
+                    domain: [aDomain[0], aDomain[1]]
+                }
             
+                if(aDomain.length >= 4)
+                vals.yAxis = {
+                    domain: [aDomain[2], aDomain[3]]
+                }
+            }
+
             vals.target = plot;
             plot.innerHTML = "";
             functionPlot(vals);

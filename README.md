@@ -6,11 +6,14 @@ Adds function-plot (https://mauriciopoppe.github.io/function-plot/)
 
 Usage:
 
-Example graphing two functions:
+Domain can be set using the data-domain attribute: "x1,x2,y1,y2":
+Function can be set using the element body: "function,color,function,color"
+
 ```html
-@@html: <plot>x^2,green,x*4,red</plot>@@
+@@html: <plot data-domain="0,100,0,100">x^2,green,x*4,red</plot>@@
 ```
-Example graphing using all options from function-plot library:
+
+An object in the element body will be passed to function-plot:
 ```html
 @@html: <plot>{ yAxis: {domain: [-1, 9]}, data: [{ fn:'x^2', derivative: { fn:'2 * x', x0:2 } }]}</plot>@@
 ```
