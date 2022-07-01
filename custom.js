@@ -101,8 +101,8 @@ function displayPlots() {
 }
 
 const updateDisplayPlots = throttle(displayPlots, 1000);
-const obsNamespace = new MutationObserver(updateDisplayPlots);
-obsNamespace.observe(watchTarget, {
+const plotNamespace = new MutationObserver(updateDisplayPlots);
+plotNamespace.observe(watchTarget, {
     subtree: true,
     attributes: true,
 });
